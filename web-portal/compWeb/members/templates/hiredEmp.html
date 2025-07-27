@@ -1,0 +1,43 @@
+
+{% extends "baseDashboard.html" %}
+{% block title %}Hiring Dashboard{% endblock %}
+
+{% block content %}
+<h2>Applicant Dashboard</h2>
+
+<input type="text" id="searchInput" class="form-control mb-3" placeholder="Search applicants...">
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Resume</th>
+    </tr>
+  </thead>
+  <tbody id="applicantTable">
+    {% for applicant in applicants %}
+    <tr>
+      <td>{{ applicant.name }}</td>
+      <td>{{ applicant.email }}</td>
+      <td>{{ applicant.role }}</td>
+      <td>
+        <a href="{{ applicant.resume.url }}" target="_blank" class="btn btn-primary">View Resume</a>
+      </td>
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+
+  document.getElementById("searchInput").addEventListener("keyup", function () {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll("#applicantTable tr").forEach(row => {
+      row.style.display = row.textContent.toLowerCase().includes(q) ? "" : "none";
+    });
+  });
+</script>
+{% endblock %}
