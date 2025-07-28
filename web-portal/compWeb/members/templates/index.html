@@ -53,7 +53,7 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#about">Admin Login</a>
+      <a class="btn-getstarted" href="{% url 'adminLogin' %}">Admin Login</a>
       <a class="btn-getstarted" href="">Application Registration</a>
 
     </div>
@@ -1120,7 +1120,7 @@ Join our community to receive valuable tips, news, and special offers straight 
   <div class="container footer-top">
     <div class="row gy-4">
       <div class="col-lg-4 col-md-6 footer-about">
-        <a href="{% url 'home' %}" class="d-flex align-items-center">
+        <a href="#home" class="d-flex align-items-center">
           <span class="sitename">IT Solutions</span>
         </a>
         <div class="footer-contact pt-3">
@@ -1134,10 +1134,10 @@ Join our community to receive valuable tips, news, and special offers straight 
       <div class="col-lg-2 col-md-3 footer-links">
         <h4>Useful Links</h4>
         <ul>
-          <li><i class="bi bi-chevron-right"></i> <a href="{% url 'home' %}">Home</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-          <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#home">Home</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#service">Services</a></li>
+          <li><i class="bi bi-chevron-right"></i> <a href="#team">Terms of service</a></li>
         </ul>
       </div>
 
