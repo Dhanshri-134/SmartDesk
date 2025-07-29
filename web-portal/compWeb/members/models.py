@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 
 
@@ -14,3 +15,21 @@ class Applicant(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Visitor(models.Model):
+    ip_address = models.GenericIPAddressField()
+    user_agent = models.TextField()
+    timestamp = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.ip_address} - {self.timestamp}"   
+    
+
+class Notification(models.Model):
+    title = models.CharField(max_length=255)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title

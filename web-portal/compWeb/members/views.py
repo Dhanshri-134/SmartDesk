@@ -11,8 +11,9 @@ import io
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from members.models import Applicant
-
+from members.models import Applicant,Notification
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import Visitor
 
 
 def members(request):
@@ -25,9 +26,9 @@ def index(request):
   return HttpResponse(template.render())
 
  
-def blog(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+def notification(request):
+  applicants = Applicant.objects.all()
+  return render(request, 'adminDashboard/pages/notifications.html', {'applicants': applicants})
 
 def serviceDetails(request):
   template = loader.get_template('index.html')
@@ -41,9 +42,24 @@ def contactForm(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
 
+@login_required
+@user_passes_test(lambda u: u.is_staff)
 def dashboard(request):
     applicants = Applicant.objects.all()
-    return render(request, 'adminDashboard.html', {'applicants': applicants})
+    visitor_count = Visitor.objects.count()
+    hired_count = Applicant.objects.filter(status='Hired').count()
+    applicant_count = applicants.count()-hired_count
+    notifications = Notification.objects.order_by('-created_at')
+    return render(request, 'adminDashboard/index.html', {'applicants': applicants, 'visitor_count': visitor_count,'applicant_count': applicant_count,'hired_count':hired_count, 'notifications': notifications})
+
+def billing(request):
+    applicants = Applicant.objects.all()
+    return render(request, 'adminDashboard/pages/billing.html', {'applicants': applicants})
+
+def tables(request):
+    applicants = Applicant.objects.all()
+    hired_applicants = Applicant.objects.filter(status='Hired')
+    return render(request, 'adminDashboard/pages/tables.html', {'applicants': applicants, 'hired_applicants': hired_applicants})
 
 def update_status(request, id):
     if request.method == "POST":
@@ -94,3 +110,25 @@ def admin_login(request):
         else:
             messages.error(request, 'Invalid credentials or not an admin.')
     return render(request, 'admin_login.html')
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def admin_dashboard(request):
+    return render(request, 'adminDashboard.html')  
+
+
+def create_applicant(request):
+    if request.method == 'POST':
+        # your applicant creation logic here
+        applicant =0 # NewApplicant.objects.create(
+             # Add other fields as necessary
+        # )
+
+        # Create a notification
+        Notification.objects.create(
+            title="New Applicant Received",
+            message=f"{applicant.name} has applied for a {applicant.role}.",
+        )
+
+        #redirect to the TECH but temperorily redirect to Admin dashboard
+        return redirect('success-page')
