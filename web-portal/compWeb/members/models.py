@@ -1,17 +1,30 @@
 from django.utils import timezone
 from django.db import models
 
+COUNTRY_CODES = [
+    ('+91', '+91 India'),
+    ('+1', '+1 USA'),
+    ('+44', '+44 UK'),
+    ('+61', '+61 Australia'),
+    ('+81', '+81 Japan'),
+]
 
+STATUS_CHOICES = [
+    ('Pending', 'Pending'),
+    ('Accepted', 'Accepted'),
+    ('Rejected', 'Rejected'),
+]
 
 class Applicant(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
+    country_code = models.CharField(max_length=5, choices=COUNTRY_CODES, default='+91')
+    contact = models.CharField(max_length=10)
+    address = models.TextField()  
     role = models.CharField(max_length=100)
-    ats_score = models.IntegerField()
-    tech_round_status = models.CharField(max_length=10, choices=[('Pass', 'Pass'), ('Fail', 'Fail')])
-    status = models.CharField(max_length=20, default="Pending")  # Hired, Rejected, Pending
     resume = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField(blank=True)
+
 
     def __str__(self):
         return self.name
@@ -33,3 +46,7 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.title
+
+    
+ 
+

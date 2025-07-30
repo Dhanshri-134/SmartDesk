@@ -1,0 +1,157 @@
+[Common]
+communication
+teamwork
+problem-solving
+critical thinking
+leadership
+adaptability
+collaboration
+creativity
+time management
+attention to detail
+multitasking
+
+[Software Developer]
+python
+java
+c++
+c#
+javascript
+node.js
+react
+angular
+spring boot
+django
+rest api
+graphql
+git
+docker
+kubernetes
+sql
+nosql
+mongodb
+postgresql
+mysql
+linux
+oop
+data structures
+algorithms
+design patterns
+agile
+scrum
+devops
+microservices
+unit testing
+jenkins
+python
+django
+sql
+mysql
+rest api
+restful api
+object-oriented programming
+oop
+git
+spring boot
+angularjs
+
+
+[QA Engineer]
+manual testing
+automation testing
+selenium
+junit
+testng
+pytest
+quality assurance
+bug tracking
+jira
+test cases
+test plans
+regression testing
+integration testing
+system testing
+performance testing
+load testing
+test automation
+cypress
+postman
+api testing
+
+[ UI/UX Designer]
+figma
+adobe xd
+sketch
+wireframing
+prototyping
+user research
+usability testing
+user experience
+user interface
+interaction design
+responsive design
+html
+css
+javascript
+design systems
+accessibility
+color theory
+typography
+
+[Project Manager]
+project management
+scrum
+kanban
+agile methodology
+waterfall
+stakeholder management
+risk management
+budgeting
+scheduling
+jira
+confluence
+gantt charts
+communication skills
+project planning
+timeline management
+resource allocation
+
+[HR / Payroll Officer]
+recruitment
+talent acquisition
+interviewing
+employee engagement
+hr policies
+onboarding
+offboarding
+performance appraisal
+payroll
+benefits administration
+compliance
+labor laws
+attendance tracking
+hr software
+training and development
+
+[System Administrator]
+windows server
+linux
+active directory
+networking
+dns
+dhcp
+firewall
+vpn
+shell scripting
+powershell
+bash
+virtualization
+vmware
+hyper-v
+cloud computing
+aws
+azure
+monitoring
+backup and recovery
+it support
+infrastructure
