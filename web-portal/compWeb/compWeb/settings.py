@@ -126,7 +126,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< Updated upstream
 STATICFILES_DIRS = [BASE_DIR / 'members/static']
+=======
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+>>>>>>> Stashed changes
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
