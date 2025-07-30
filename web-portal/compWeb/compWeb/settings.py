@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'webcompdb',
         'USER': 'root',
-        'PASSWORD': '2006136134',
+        'PASSWORD': '8329',
         'HOST': 'localhost',
         'PORT': '3306',
 }

@@ -19,6 +19,7 @@ urlpatterns = [
     path('login/', views.admin_login, name='login'),
     path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
     path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
+    path('billing/', views.billing, name='billing'),
 
 ]
 if settings.DEBUG:

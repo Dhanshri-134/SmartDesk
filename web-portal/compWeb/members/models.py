@@ -12,6 +12,8 @@ class Applicant(models.Model):
     status = models.CharField(max_length=20, default="Pending")  # Hired, Rejected, Pending
     resume = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField(blank=True)
+    contact = models.CharField(max_length=20)
+    address = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
