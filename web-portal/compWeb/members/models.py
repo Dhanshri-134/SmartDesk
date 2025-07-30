@@ -23,7 +23,7 @@ class Applicant(models.Model):
     address = models.TextField()  
     role = models.CharField(max_length=100)
     resume = models.FileField(upload_to='resumes/')
-<<<<<<< Updated upstream
+
     cover_letter = models.TextField(blank=True)
     contact = models.CharField(max_length=20)
     address = models.TextField(blank=True)
@@ -48,11 +48,11 @@ class Notification(models.Model):
 
     def __str__(self):
         return self.title
-=======
+
     cover_letter = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')  #reject or hire
     ats_score = models.FloatField(default=0.0)
     
     def __str__(self):
         return self.name
->>>>>>> Stashed changes
+
