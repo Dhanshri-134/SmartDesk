@@ -18,10 +18,13 @@ STATUS_CHOICES = [
 class Applicant(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    country_code = models.CharField(max_length=5, choices=COUNTRY_CODES, default='+91')
-    contact = models.CharField(max_length=10)
-    address = models.TextField()  
+    country_code = models.CharField(max_length=5, choices=COUNTRY_CODES,default='+91')
+    contact = models.CharField(max_length=100)
+    address = models.TextField()
     role = models.CharField(max_length=100)
+    ats_score = models.IntegerField()
+    tech_round_status = models.CharField(max_length=10, choices=[('Pass', 'Pass'), ('Fail', 'Fail')])
+    status = models.CharField(max_length=20, default="Pending")
     resume = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField(blank=True)
 

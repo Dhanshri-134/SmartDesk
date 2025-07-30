@@ -18,9 +18,9 @@ from .models import Applicant
 import os
 import docx2txt
 import PyPDF2
-from .models import Applicant
-from .forms import ApplicantForm
-from .models import Notification
+from .models import Applicant,Notification
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import Visitor
 
 
 
@@ -291,4 +291,82 @@ def admin_login(request):
             return redirect('adminDashboard')  #
         else:
             messages.error(request, 'Invalid credentials or not an admin.')
-    return render(request, 'admin_login.html') 
+
+    return render(request, 'admin_login.html')
+
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def admin_dashboard(request):
+    return render(request, 'adminDashboard.html')  
+
+
+def create_applicant(request):
+    if request.method == 'POST':
+        # your applicant creation logic here
+        applicant =0 # NewApplicant.objects.create(
+             # Add other fields as necessary
+        # )
+
+        # Create a notification
+        Notification.objects.create(
+            title="New Applicant Received",
+            message=f"{applicant.name} has applied for a {applicant.role}.",
+        )
+
+        #redirect to the TECH but temperorily redirect to Admin dashboard
+        return redirect('success-page')
+    
+
+import re
+
+def chatbot(request):
+    message = request.GET.get("message", "").strip().lower()
+
+    # 1. Application Status Intent
+    match = re.search(r'(?P<name>[a-z ]+)\s+(?P<id>[a-z0-9]+)', message)
+    if 'status' in message or match:
+        if match:
+            name = match.group("name").title()
+            app_id = match.group("id").upper()
+
+            try:
+                app = Applicant.objects.get(applicant_id=app_id, name__iexact=name)
+                return JsonResponse({"reply": f"Status for {name} (ID: {app_id}) is: {app.status}"})
+            except Applicant.DoesNotExist:
+                return JsonResponse({"reply": "No application found with that name and ID."})
+        return JsonResponse({"reply": "Please enter your full name followed by application ID, e.g. 'Riya A123'."})
+
+    # 2. Small Talk
+    if any(word in message for word in ["hi", "hello", "hey"]):
+        return JsonResponse({"reply": "Hello! 👋 I'm SmartDesk Bot. Ask me about your application, job roles, or interview."})
+    if "thank" in message:
+        return JsonResponse({"reply": "You're welcome! 😊 Let me know if you need anything else."})
+    if "who are you" in message:
+        return JsonResponse({"reply": "I'm SmartDesk Assistant, here to help you with job application tracking and support."})
+
+    # 3. Show Job Openings
+    if "job" in message or "openings" in message:
+        # In real case, fetch from DB
+        jobs = ["Java Developer", "Frontend Intern", "ML Engineer", "HR Assistant"]
+        job_list = "\n• " + "\n• ".join(jobs)
+        return JsonResponse({"reply": f"Current job openings:\n{job_list}"})
+
+    # 4. Interview Date (mocked example)
+    if "interview" in message:
+        return JsonResponse({"reply": "If shortlisted, your interview date will be sent via email. You can also check your application status here."})
+
+    # 5. Contact HR
+    if "contact" in message or "hr" in message:
+        return JsonResponse({"reply": "You can reach our HR team at hr@smartdesk.com or call +91-9876543210."})
+
+    # 6. Resume Upload
+    if "upload" in message or "resume" in message:
+        return JsonResponse({"reply": "You can upload your resume at: https://smartdesk.com/upload-resume"})
+
+    # 7. Help Guide
+    if "help" in message or "how to apply" in message:
+        return JsonResponse({"reply": "To apply, go to the Careers page, choose a role, and submit your resume. You’ll receive a confirmation email."})
+
+    # 8. Fallback
+    return JsonResponse({"reply": "I'm not sure how to help with that yet. Try asking about job status, openings, interview, or HR contact."})
+
