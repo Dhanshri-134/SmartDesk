@@ -20,12 +20,7 @@ import docx2txt
 import PyPDF2
 from .models import Applicant
 from .forms import ApplicantForm
-
-import os
-import docx2txt
-import PyPDF2
-from .models import Applicant
-from .forms import ApplicantForm
+from .models import Notification
 
 
 

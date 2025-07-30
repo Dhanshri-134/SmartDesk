@@ -5,4 +5,4 @@ from members.models import Applicant
 
 @admin.register(Applicant)
 class ApplicantAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'ats_score')
+    list_display = ('name', 'email')
