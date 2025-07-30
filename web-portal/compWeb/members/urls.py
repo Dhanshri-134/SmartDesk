@@ -17,7 +17,6 @@ urlpatterns = [
     path('notifications/', views.notification, name='notification'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('login/', views.admin_login, name='login'),
-    path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
     path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
     path('register/', views.register_applicant, name='register_applicant'),
     path('success/<int:applicant_id>/', views.registration_success, name='application_success'),

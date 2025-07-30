@@ -22,7 +22,7 @@ class Applicant(models.Model):
     contact = models.CharField(max_length=100)
     address = models.TextField()
     role = models.CharField(max_length=100)
-    ats_score = models.IntegerField()
+    ats_score = models.IntegerField(default=0)
     tech_round_status = models.CharField(max_length=10, choices=[('Pass', 'Pass'), ('Fail', 'Fail')])
     status = models.CharField(max_length=20, default="Pending")
     resume = models.FileField(upload_to='resumes/')
