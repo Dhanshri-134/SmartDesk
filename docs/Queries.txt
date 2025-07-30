@@ -1,0 +1,1 @@
+ CREATE DATABASE webcompdb CHARACTER SET utf8mb4;
