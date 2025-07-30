@@ -14,15 +14,12 @@ from django.contrib import messages
 from members.models import Applicant
 import re
 from django.http import HttpResponse
-<<<<<<< Updated upstream
 from .models import Applicant
 import os
 import docx2txt
 import PyPDF2
 from .models import Applicant
 from .forms import ApplicantForm
-=======
->>>>>>> Stashed changes
 
 import os
 import docx2txt
