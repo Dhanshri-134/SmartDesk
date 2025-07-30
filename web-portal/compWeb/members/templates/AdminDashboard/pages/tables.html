@@ -29,7 +29,7 @@
     <div class="col-12">
       <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+          <div class="shadow-secondary border-radius-lg pt-4 pb-3" style="background-color: #6c63ff;">
             <h6 class="text-white text-capitalize ps-3">Applicant Dashboard</h6>
           </div>
         </div>
@@ -51,6 +51,7 @@
               <tbody id="applicantTable">
                 {% for applicant in applicants %}
                 <tr>
+                  <td>{{ applicant.id }}</td>
                   <td>{{ applicant.name }}</td>
                   <td>{{ applicant.email }}</td>
                   <td>{{ applicant.role }}</td>
@@ -97,7 +98,7 @@
     <div class="col-12">
       <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+          <div class="shadow-secondary border-radius-lg pt-4 pb-3" style="background-color: #6c63ff;">
             <h6 class="text-white text-capitalize ps-3">Hired Employees</h6>
           </div>
         </div>

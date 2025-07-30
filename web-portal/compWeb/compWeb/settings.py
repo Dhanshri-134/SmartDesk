@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'webcompdb',
         'USER': 'root',
-        'PASSWORD': '8329',
+        'PASSWORD': '2006136134',
         'HOST': 'localhost',
         'PORT': '3306',
 }
@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'members/static']
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "static"]
 
 
 # Default primary key field type
