@@ -18,9 +18,29 @@ from .models import Applicant
 import os
 import docx2txt
 import PyPDF2
+<<<<<<< Updated upstream
 from .models import Applicant
 from .forms import ApplicantForm
 from .models import Notification
+=======
+from .models import Applicant,Notification,Visitor
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Applicant
+from .utils import generate_offer_letter_pdf, send_offer_letter_email
+
+def hire_applicant(request, applicant_id):
+    applicant = get_object_or_404(Applicant, id=applicant_id)
+    applicant.status = "Hired"
+    applicant.save()
+
+    pdf_path = generate_offer_letter_pdf(applicant)
+    if pdf_path:
+        send_offer_letter_email(applicant, pdf_path)
+
+    return redirect('tables')
+>>>>>>> Stashed changes
 
 
 
@@ -185,7 +205,7 @@ def register_applicant(request):
             title="New Applicant Received",
             message=f"{applicant.name} has applied for the {applicant.role} role."
 )
-            messages.success(request, f'Application submitted! ATS Score: {ats_score}')
+            messages.success(request, 'Application submitted!')
             return redirect('application_success', applicant_id=applicant.id)
     else:
         form = ApplicantForm()
@@ -218,11 +238,14 @@ def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
 
+<<<<<<< Updated upstream
  
 def blog(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
 
+=======
+>>>>>>> Stashed changes
 def serviceDetails(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
@@ -237,7 +260,16 @@ def contactForm(request):
 
 def dashboard(request):
     applicants = Applicant.objects.all()
+<<<<<<< Updated upstream
     return render(request, 'adminDashboard.html', {'applicants': applicants})
+=======
+    visitor_count = Visitor.objects.count()
+    hired_count = Applicant.objects.filter(status='Hired').count()
+    applicant_count = applicants.count()-hired_count
+    notifications = Notification.objects.order_by('-created_at')
+    return render(request, 'AdminDashboard/index.html', {'applicants': applicants, 'visitor_count': visitor_count,'applicant_count': applicant_count,'hired_count':hired_count, 'notifications': notifications})
+
+>>>>>>> Stashed changes
 
 def update_status(request, id):
     if request.method == "POST":
@@ -245,6 +277,13 @@ def update_status(request, id):
         new_status = request.POST.get('status')
         applicant.status = new_status
         applicant.save()
+
+        # If hired, generate offer letter & send email
+        if new_status == "Hired":
+            pdf_path = generate_offer_letter_pdf(applicant)
+            if pdf_path:
+                send_offer_letter_email(applicant, pdf_path)
+
         return JsonResponse({'success': True})
 
 

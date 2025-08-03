@@ -24,6 +24,9 @@ class Applicant(models.Model):
     role = models.CharField(max_length=100)
     resume = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField(blank=True)
+    joining_date = models.CharField(max_length=50, blank=True, null=True)
+    username = models.CharField(max_length=50, blank=True, null=True)
+    generated_password = models.CharField(max_length=50, blank=True, null=True)
 
 
     def __str__(self):
@@ -48,5 +51,3 @@ class Notification(models.Model):
         return self.title
 
     
- 
-
