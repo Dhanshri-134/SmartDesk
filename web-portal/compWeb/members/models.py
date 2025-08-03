@@ -1,5 +1,8 @@
 from django.utils import timezone
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
+
 
 COUNTRY_CODES = [
     ('+91', '+91 India'),
@@ -23,15 +26,20 @@ class Applicant(models.Model):
     address = models.TextField()
     role = models.CharField(max_length=100)
     ats_score = models.IntegerField(default=0)
-    tech_round_status = models.CharField(max_length=10, choices=[('Pass', 'Pass'), ('Fail', 'Fail')])
+    tech_round_status = models.CharField(max_length=10, choices=[('Pass', 'Pass'), ('Fail', 'Fail')],default='Pending')
     status = models.CharField(max_length=20, default="Pending")
     resume = models.FileField(upload_to='resumes/')
     cover_letter = models.TextField(blank=True)
+    joining_date = models.CharField(max_length=50, blank=True, null=True)
+    username = models.CharField(max_length=50, blank=True, null=True)
+    generated_password = models.CharField(max_length=50, blank=True, null=True)
+
 
 
     def __str__(self):
         return self.name
     
+
 class Visitor(models.Model):
     ip_address = models.GenericIPAddressField()
     user_agent = models.TextField()
@@ -51,5 +59,3 @@ class Notification(models.Model):
         return self.title
 
     
- 
-

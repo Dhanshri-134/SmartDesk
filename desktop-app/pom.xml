@@ -42,6 +42,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
         </dependency>
+  
+        <dependency>
+            <groupId>com.smartdesk</groupId>
+            <artifactId>face-recognition-service</artifactId>
+            <version>0.1.0</version>
+        </dependency>
 
         <!-- H2 for local dev -->
         <dependency>

@@ -13,14 +13,20 @@ urlpatterns = [
     path('adminDashboard/', views.dashboard, name='adminDashboard'),
     path('billing/', views.billing, name='billing'),
     path('tables/', views.tables, name='tables'),
+    path('hire/<int:applicant_id>/', views.hire_applicant, name='hire_applicant'),
     path('update_status/<int:id>/', views.update_status, name='update_status'),
     path('notifications/', views.notification, name='notification'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('login/', views.admin_login, name='login'),
-    path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
-    path('register/', views.register_applicant, name='register_applicant'),
-    path('success/<int:applicant_id>/', views.registration_success, name='application_success'),
     path('chatbot/', views.chatbot, name='chatbot'),
+    path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
+    path('register/', views.register_applicant, name='register_applicant'),
+     path('success/<int:applicant_id>/', views.registration_success, name='application_success'),
+    # path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
+
+   
+    
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

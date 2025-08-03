@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Joining Letter</title>
+    <style>
+        body { font-family:'Times New Roman', Times, serif, sans-serif; line-height: 1.0; margin: 40px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .logo { width: 120px; }
+        .content { margin-top: 20px; }
+        .section { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'assets/img/favicon.png' %}" class="logo" alt="Company Logo">
+        <h2>{{ company_name|default:"SmartDesk Pvt Ltd" }}</h2>
+        <p>{{ company_address|default:"Hinjawadi Phase-I,Pune,Maharashtra - 431001" }}</p>
+    </div>
+
+    <br><br>Date: {{ today_date|default:"DD/MM/YYYY" }}</br></p>
+
+    <div class="content">
+        <p>To,</p>
+        <p>{{ employee_name }}</p>
+
+        <p class="section"><strong>Subject:</strong> Appointment as {{ job_role }} at {{ company_name }}</p>
+
+        <p>Dear {{ employee_name }},</p>
+
+        <p>We are pleased to confirm your appointment as <strong>{{ job_role }}</strong> at <strong>{{ company_name }}</strong>. The details of your employment are as follows:</p>
+
+        
+            <p><strong>Date of Joining:</strong> {{ joining_date }}</p>
+            <p><strong>Location:</strong> {{ location|default:"Office Location" }}</p>
+            <p><strong>Reporting Manager:</strong> {{ manager_name|default:"Manager Name" }}</p>
+            <p><strong>Compensation Package:</strong> {{ compensation|default:"Details of package" }}</p>
+      
+
+        <p>Please bring this letter along with a valid photo ID on your first day for verification purposes.</p>
+        <p>We look forward to welcoming you to our team and wish you a successful career with {{ company_name }}.</p>
+
+        <p>Yours sincerely,</p>
+        <p>{{ hr_name|default:"HR Team" }}</p>
+    </div>
+</body>
+</html>

@@ -81,13 +81,14 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
-    'default': {
+        'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'webcompdb',
         'USER': 'root',
-        'PASSWORD': '2006136134',
+        'PASSWORD': '8329',  # Your MySQL root password
         'HOST': 'localhost',
         'PORT': '3306',
+
 }
 }
 
@@ -140,3 +141,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # or your email provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'harelsamiksha127@gmail.com'  # your email
+EMAIL_HOST_PASSWORD = 'ahzw kfvy afsy awad'  # app password, not Gmail password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

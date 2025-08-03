@@ -3,58 +3,84 @@ communication
 teamwork
 problem-solving
 critical thinking
-leadership
+leadership 
 adaptability
-collaboration
-creativity
+collaboration 
+creativity 
 time management
-attention to detail
-multitasking
+attention to detail 
+multitasking 
+decision making 
+analytical skills
+project coordination 
+stakeholder engagement 
+documentation 
+research skills 
+mentoring
+presentation skills 
+customer service 
+conflict resolution 
+organizational skills 
+negotiation skills
 
 [Software Developer]
 python
-java
-c++
-c#
+java 
+c++ 
+c# 
 javascript
 node.js
-react
-angular
-spring boot
-django
-rest api
-graphql
-git
+react 
+angular 
+vue.js 
+spring boot 
+django 
+flask
+rest api 
+graphql 
+git 
 docker
-kubernetes
-sql
-nosql
-mongodb
-postgresql
-mysql
-linux
-oop
+kubernetes 
+sql 
+nosql 
+mongodb 
+postgresql 
+mysql 
+linux 
+oop 
 data structures
-algorithms
-design patterns
-agile
-scrum
+algorithms 
+design patterns 
+agile 
+scrum 
 devops
-microservices
-unit testing
+microservices 
+unit testing 
 jenkins
-python
-django
-sql
-mysql
-rest api
-restful api
-object-oriented programming
-oop
-git
-spring boot
-angularjs
-
+ci/cd 
+maven 
+gradle
+vscode 
+intellij 
+webpack 
+npm 
+yarn 
+bootstrap 
+material ui 
+testing 
+debugging 
+version control 
+automation
+cloud 
+aws 
+azure 
+gcp 
+api integration 
+software architecture
+system design 
+performance optimization 
+security best practices 
+code review
 
 [QA Engineer]
 manual testing
@@ -69,14 +95,29 @@ jira
 test cases
 test plans
 regression testing
-integration testing
-system testing
+integration testing 
+system testing 
 performance testing
 load testing
 test automation
 cypress
 postman
 api testing
+soapui
+loadrunner
+qtp
+uft
+agile testing
+bdd
+tdd
+continuous testing
+risk-based testing
+defect life cycle
+exploratory testing
+acceptance testing
+smoke testing
+sanity testing
+usability testing
 
 [ UI/UX Designer]
 figma
@@ -97,6 +138,21 @@ design systems
 accessibility
 color theory
 typography
+adobe photoshop
+adobe illustrator
+adobe indesign
+axure
+balsamiq
+ persona development
+ journey mapping
+ heuristic evaluation
+ information architecture
+ content strategy
+ prototyping tools
+ animation
+ visual hierarchy
+ mood boards
+ storytelling
 
 [Project Manager]
 project management
@@ -115,6 +171,21 @@ communication skills
 project planning
 timeline management
 resource allocation
+leadership
+team coordination
+roadmap planning
+critical path method
+milestone tracking
+dependency management
+change management
+project documentation
+conflict resolution
+mentoring
+reporting 
+backlog management
+performance metrics
+release planning
+version control awareness
 
 [HR / Payroll Officer]
 recruitment
@@ -132,6 +203,19 @@ labor laws
 attendance tracking
 hr software
 training and development
+employee relations
+compensation management
+workforce planning
+employee retention
+recruitment analytics
+background checks
+succession planning
+hr metrics
+policy enforcement
+organizational culture
+employee satisfaction
+talent management
+hr strategy
 
 [System Administrator]
 windows server
@@ -155,3 +239,264 @@ monitoring
 backup and recovery
 it support
 infrastructure
+system security
+patch management
+scripting automation
+containerization
+ci/cd pipelines
+load balancing
+disaster recovery
+configuration management
+ansible
+terraform
+nagios
+zabbix
+prometheus
+grafana
+network troubleshooting
+performance tuning
+database administration
+troubleshooting
+remote management
+
+[Data Analyst / Business Analyst]
+sql
+excel
+tableau
+power bi
+data visualization
+pivot tables
+dashboards
+reporting
+business intelligence
+analytics
+python
+r
+pandas
+numpy
+data cleaning
+data preprocessing
+data modeling
+statistics
+regression analysis
+hypothesis testing
+trend analysis
+forecasting
+stakeholder communication
+requirement gathering
+process improvement
+workflow optimization
+gap analysis
+documentation
+presentations
+reporting tools
+agile
+scrum
+
+[Data Scientist / Machine Learning Engineer / AI Engineer]
+python
+r
+sql
+pandas
+numpy
+scikit-learn
+tensorflow
+keras
+pytorch
+ml
+ai
+deep learning
+neural networks
+regression
+classification
+clustering 
+nlp
+computer vision
+cnn
+rnn
+lstm
+transformers
+reinforcement learning
+feature engineering
+model training
+model evaluation
+hyperparameter tuning
+data preprocessing
+data visualization
+matplotlib
+seaborn
+statistics
+probability
+hypothesis testing
+big data
+spark
+hadoop
+cloud ai
+docker
+kubernetes
+ci/cd
+
+[Frontend Developer]
+html 
+css 
+javascript 
+typescript 
+react 
+angular 
+vue.js 
+bootstrap 
+material ui 
+tailwind 
+sass
+responsive design 
+ajax 
+json 
+webpack 
+npm
+yarn 
+api integration 
+cross-browser compatibility 
+debugging 
+performance optimization 
+ui frameworks 
+version control 
+git 
+github 
+agile 
+scrum 
+testing 
+jest 
+cypress
+
+[Backend Developer]
+node.js 
+express.js 
+python 
+django 
+flask 
+java 
+spring boot
+rest api 
+graphql 
+sql 
+mysql 
+postgresql 
+nosql 
+mongodb 
+redis 
+caching 
+authentication 
+authorization 
+jwt 
+security best practices 
+ci/cd 
+docker 
+kubernetes 
+microservices 
+api design 
+performance tuning 
+logging 
+monitoring 
+testing 
+unittest 
+pytest 
+integration testing 
+git 
+github
+
+[Cloud Engineer / DevOps]
+aws 
+azure 
+gcp 
+cloud infrastructure 
+docker 
+kubernetes 
+terraform 
+ansible 
+ci/cd 
+jenkins 
+git 
+monitoring 
+prometheus 
+grafana 
+logging 
+security 
+automation 
+scripting 
+linux 
+windows server 
+virtualization 
+vmware 
+hyper-v 
+scalability 
+high availability 
+disaster recovery backup 
+containerization 
+cloud services 
+load balancing 
+orchestration 
+deployment 
+pipeline 
+serverless 
+cloud architecture 
+agile
+
+[Java FullStack Developer]
+java
+python
+c
+c++
+javascript
+typescript
+html
+css
+sql
+spring boot
+spring mvc
+hibernate
+angular
+react
+reactjs
+bootstrap
+flask
+thymeleaf
+jsp
+jquery
+mysql
+postgresql
+mongodb
+oracle
+nosql
+redis
+sql server
+git
+github
+gitlab
+docker
+kubernetes
+jenkins
+maven
+gradle
+ci cd
+linux
+bash
+shell scripting
+object-oriented programming
+oop
+data structures
+algorithms
+design patterns
+microservices
+unit testing
+integration testing
+tdd
+agile
+scrum
+kanban
+code review
+continuous integration
+continuous deployment
+version control
+refactoring
+clean code
+

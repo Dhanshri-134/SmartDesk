@@ -1,4 +1,3 @@
-com\smartdesk\controllers\LoginController.class
 com\smartdesk\controllers\HomeController.class
 com\smartdesk\AppLauncher.class
 com\smartdesk\config\SpringContext.class
@@ -6,8 +5,10 @@ com\smartdesk\model\ActivityLog.class
 com\smartdesk\controllers\ProfileController.class
 com\smartdesk\service\ActivityTracker.class
 com\smartdesk\service\UserService.class
+com\smartdesk\controllers\SuperAdminDashboardController.class
 com\smartdesk\repository\UserRepository.class
 com\smartdesk\SmartDeskApp.class
+com\smartdesk\controllers\FaceLoginController.class
 com\smartdesk\controllers\EmployeeDashboardController.class
 com\smartdesk\repository\ActivityLogRepository.class
 com\smartdesk\controllers\CompanyDashboardController.class

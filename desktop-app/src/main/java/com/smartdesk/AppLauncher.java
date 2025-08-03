@@ -1,12 +1,14 @@
 package com.smartdesk;
 
+import org.springframework.context.ConfigurableApplicationContext;
+
 import com.smartdesk.config.SpringContext;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.springframework.context.ConfigurableApplicationContext;
 
 public class AppLauncher extends Application {
 

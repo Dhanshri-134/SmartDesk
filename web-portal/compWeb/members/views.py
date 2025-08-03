@@ -1,23 +1,41 @@
 import datetime
-import os
+import string
+from difflib import SequenceMatcher
+
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render
 from django.template import loader
 from django.template.loader import render_to_string,get_template
 from xhtml2pdf import pisa
 from django.templatetags.static import static
 import io
 from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import ApplicantForm
 import re
+import os
 import docx2txt
 import PyPDF2
-from .models import Applicant,Notification,Visitor
+from .models import Applicant, Notification, Visitor
+from .forms import ApplicantForm
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import get_object_or_404, redirect
+from .utils import generate_joining_letter_pdf, send_joining_letter_email
 
 
+def hire_applicant(request, applicant_id):
+    applicant = get_object_or_404(Applicant, id=applicant_id)
+    applicant.status = "Hired"
+    applicant.save()
+
+    # Send joining letter automatically
+    if send_joining_letter_email(applicant):
+        messages.success(request, f"Joining letter sent to {applicant.email}")
+    else:
+        messages.error(request, "Failed to send joining letter")
+
+    return redirect('tables')
 
 
 
@@ -38,8 +56,6 @@ def load_keywords():
     role_keywords = {}
     current_role = None
     keyword_file_path = os.path.join(settings.BASE_DIR, 'members', 'ats', 'keywords.txt')
-
-
     with open(keyword_file_path, 'r') as f:
         for line in f:
             line = line.strip()
@@ -56,17 +72,53 @@ def load_keywords():
 ROLE_KEYWORDS = load_keywords()
 
 
-def calculate_ats_score(resume_text, role_keywords):
-    resume_text = resume_text.lower()
-    matched_keywords = [keyword for keyword in role_keywords if re.search(r'\b' + re.escape(keyword) + r'\b', resume_text)]
-    print(f"Matched Keywords: {matched_keywords}")  # DEBUG
 
-    max_possible_keywords = len(set(role_keywords))  # avoid duplicate keywords
-    if max_possible_keywords == 0:
+
+
+import re
+from difflib import SequenceMatcher
+
+def calculate_ats_score(resume_text, role_keywords, common_keywords=None):
+    """
+    Calculate ATS score based on role-specific and common keywords.
+    Role keywords have higher weight.
+    """
+    if common_keywords is None:
+        common_keywords = []
+
+    all_keywords = role_keywords + common_keywords
+
+    # Clean resume text: lowercase and remove special characters
+    resume_text_clean = re.sub(r'[^a-zA-Z0-9\s]', ' ', resume_text.lower())
+    resume_words = resume_text_clean.split()
+
+    matched_keywords = []
+    total_weight = 0
+    matched_weight = 0
+
+    for kw in all_keywords:
+        kw_clean = kw.lower()
+        weight = 2 if kw in role_keywords else 1  # role keywords weighted higher
+        total_weight += weight
+
+        # Check if keyword exists in resume (fuzzy matching)
+        kw_words = kw_clean.split()
+        for i in range(len(resume_words) - len(kw_words) + 1):
+            phrase = " ".join(resume_words[i:i+len(kw_words)])
+            similarity = SequenceMatcher(None, phrase, kw_clean).ratio()
+            if similarity >= 0.8:
+                matched_keywords.append(kw)
+                matched_weight += weight
+                break
+
+    # Debug: print matched keywords
+    print(f"Matched Keywords: {matched_keywords}")
+
+    if total_weight == 0:
         return 0
-    score = (len(matched_keywords) / max_possible_keywords) * 100
-    return round(score, 2)
 
+    score = (matched_weight / total_weight) * 100
+    return round(score, 2)
 
 # def register_applicant(request):
 #     if request.method == 'POST':
@@ -105,56 +157,6 @@ def registration_success(request, applicant_id):
     return render(request, 'success.html', {'applicant': applicant})
 
 
-
-def extract_text_from_resume(resume_file):
-    ext = os.path.splitext(resume_file.name)[1].lower()
-    if ext == '.pdf':
-        pdf_reader = PyPDF2.PdfReader(resume_file)
-        text = ''
-        for page in pdf_reader.pages:
-            text += page.extract_text() or ''
-        return text
-    elif ext == '.docx':
-        return docx2txt.process(resume_file)
-    else:
-        return ''
-
-def load_keywords():
-    role_keywords = {}
-    current_role = None
-    keyword_file_path = os.path.join(settings.BASE_DIR, 'members', 'ats', 'keywords.txt')
-
-
-    with open(keyword_file_path, 'r') as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            if line.startswith('[') and line.endswith(']'):
-                current_role = line[1:-1].strip()
-                role_keywords[current_role] = []
-            elif current_role:
-                role_keywords[current_role].append(line.lower())
-    
-    return role_keywords
-
-ROLE_KEYWORDS = load_keywords()
-
-
-
-def calculate_ats_score(resume_text, role_keywords):
-    resume_text = resume_text.lower()
-    matched_keywords = [keyword for keyword in role_keywords if re.search(r'\b' + re.escape(keyword) + r'\b', resume_text)]
-    print(f"Matched Keywords: {matched_keywords}")  # DEBUG
-
-    max_possible_keywords = len(set(role_keywords))  # avoid duplicate keywords
-    if max_possible_keywords == 0:
-        return 0
-    score = (len(matched_keywords) / max_possible_keywords) * 100
-    return round(score, 2)
-
-
-
 def register_applicant(request):
     if request.method == 'POST':
         form = ApplicantForm(request.POST, request.FILES)
@@ -168,25 +170,28 @@ def register_applicant(request):
             print(f"Resume Text Extracted:\n{resume_text[:1000]}")  
 
             role = form.cleaned_data['role']
-            keywords = ROLE_KEYWORDS.get(role, []) + ROLE_KEYWORDS.get("Common", [])
+            role_keywords = ROLE_KEYWORDS.get(role, [])
+            common_keywords = ROLE_KEYWORDS.get("Common", [])
 
-            print(f"Loaded {len(keywords)} keywords for role: {role}")  # DEBUG
+            print(f"Loaded {len(role_keywords)} role keywords and {len(common_keywords)} common keywords for role: {role}")  # DEBUG
 
-            ats_score = calculate_ats_score(resume_text, keywords)
+            # Pass role and common keywords separately
+            ats_score = calculate_ats_score(resume_text, role_keywords, common_keywords)
 
             applicant.ats_score = ats_score
             applicant.status = 'Pending'
             applicant.save()
+
             Notification.objects.create(
-            title="New Applicant Received",
-            message=f"{applicant.name} has applied for the {applicant.role} role."
-)
-            messages.success(request, f'Application submitted! ATS Score: {ats_score}')
+                title="New Applicant Received",
+                message=f"{applicant.name} has applied for the {applicant.role} role."
+            )
+
+            messages.success(request, 'Application submitted!')
             return redirect('application_success', applicant_id=applicant.id)
     else:
         form = ApplicantForm()
     return render(request, 'registration_form.html', {'form': form})
-
 
 
 def tables(request):
@@ -197,9 +202,6 @@ def tables(request):
         'hired_applicants': hired_applicants
     })
 
-def registration_success(request, applicant_id):
-    applicant = get_object_or_404(Applicant, id=applicant_id)
-    return render(request, 'success.html', {'applicant': applicant})
 
 def notification(request):
     applicants = Applicant.objects.all()
@@ -216,9 +218,24 @@ def index(request):
   return HttpResponse(template.render())
 
 
-def contactForm(request):
+ 
+def blog(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
+
+
+def serviceDetails(request):
+  template = loader.get_template('index.html')
+  return HttpResponse(template.render())
+
+def hiredEmp(request):
+   applicants = Applicant.objects.all()
+   return render(request, 'hiredEmp.html', {'applicants': applicants})
+# email and joind letter
+
+def contactForm(request):
+   template = loader.get_template('index.html')
+   return HttpResponse(template.render())
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)
@@ -226,10 +243,16 @@ def dashboard(request):
     applicants = Applicant.objects.all()
     visitor_count = Visitor.objects.count()
     hired_count = Applicant.objects.filter(status='Hired').count()
-    applicant_count = applicants.count()-hired_count
+    applicant_count = applicants.count() - hired_count
     notifications = Notification.objects.order_by('-created_at')
-    return render(request, 'adminDashboard/index.html', {'applicants': applicants, 'visitor_count': visitor_count,'applicant_count': applicant_count,'hired_count':hired_count, 'notifications': notifications})
 
+    return render(request, 'adminDashboard/index.html', {
+        'applicants': applicants,
+        'visitor_count': visitor_count,
+        'applicant_count': applicant_count,
+        'hired_count': hired_count,
+        'notifications': notifications
+    })
 
 def update_status(request, id):
     if request.method == "POST":
@@ -237,36 +260,13 @@ def update_status(request, id):
         new_status = request.POST.get('status')
         applicant.status = new_status
         applicant.save()
-        return JsonResponse({'success': True})
 
+        # If hired, generate offer letter & send email
+        if new_status == "Hired":
+            send_joining_letter_email(applicant)
 
-def generate_offer_letter(request):
-    logo_path = r"D:\My Projects\Final Project\SmartDesk\web-portal\compWeb\members\static\assets\img\favicon.png"
-    signature_path =r"D:\My Projects\Final Project\SmartDesk\web-portal\compWeb\members\static\assets\img\logo.webp"
-    context = {
-    'company_logo': logo_path,
-    'signature_img': f'{signature_path.replace("\\", "/")}',
-    'today_date': datetime.date.today().strftime("%B %d, %Y"),
-    'employee_name': 'John Doe',
-    'employee_address': '123 Main Street, Mumbai',
-    'company_name': 'SmartDesk Pvt Ltd',
-    'job_role': 'Software Engineer',
-    'joining_date': 'August 1, 2025',
-    'username': 'john.doe',
-    'password': 'secure@123',
-    'hr_name': 'Ms. Priya Sharma',
-}
+        return JsonResponse({'success': True}) 
 
-    template = get_template("offer_letter.html")
-    html = template.render(context)
-    
-    result = io.BytesIO()
-    pdf = pisa.pisaDocument(io.BytesIO(html.encode("UTF-8")), result)
-
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-
-    return HttpResponse("Error while generating PDF", status=500)
 
 def billing(request):
     applicants = Applicant.objects.all()
