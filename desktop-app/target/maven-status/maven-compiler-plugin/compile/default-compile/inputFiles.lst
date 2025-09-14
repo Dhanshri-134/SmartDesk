@@ -1,0 +1,15 @@
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\config\SpringContext.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\controllers\HomeController.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\controllers\CompanyDashboardController.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\model\ActivityLog.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\repository\ActivityLogRepository.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\controllers\LoginController.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\service\ActivityTracker.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\AppLauncher.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\service\UserService.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\repository\UserRepository.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\controllers\SuperAdminDashboardController.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\controllers\ProfileController.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\model\User.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\controllers\EmployeeDashboardController.java
+D:\My Projects\Final Project\SmartDesk\desktop-app\src\main\java\com\smartdesk\SmartDeskApp.java

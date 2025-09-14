@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
+<!--            xmlns:fx="http://javafx.com/fxml"-->
+<!--            fx:controller="fxml.CompanyDashboard"-->
+<!--            prefHeight="400.0" prefWidth="600.0">-->
+
+<!--</AnchorPane>-->
+
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.SuperAdminDashboardController">
+
+<!-- Top Bar -->
+<top>
+    <HBox styleClass="top-bar">
+        <Label text="SmartDesk" styleClass="app-title"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button text="Profile" styleClass="profile-btn"/>
+    </HBox>
+</top>
+
+<!-- Left Sidebar -->
+<left>
+    <VBox spacing="15" styleClass="sidebar">
+        <Button text="Dashboard" styleClass="nav-btn"/>
+        <Button text="Employees" styleClass="nav-btn"/>
+        <Button text="Projects" styleClass="nav-btn"/>
+        <Button text="Performance" styleClass="nav-btn"/>
+        <Button text="Meetings" styleClass="nav-btn"/>
+        <Button text="Settings" styleClass="nav-btn"/>
+    </VBox>
+</left>
+
+<!-- Main Content -->
+<center>
+    <StackPane fx:id="contentArea" styleClass="content-area">
+        <Label text="Welcome to SmartDesk Dashboard!" styleClass="welcome-text"/>
+    </StackPane>
+</center>
+
+</BorderPane>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.SuperAdminDashboardController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="top-bar">
+            <Label text="SmartDesk" styleClass="app-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Profile" styleClass="profile-btn"/>
+        </HBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <Button text="Company" styleClass="nav-btn"/>
+            <Button text="Employees" styleClass="nav-btn"/>
+            <Button text="Projects" styleClass="nav-btn"/>
+            <Button text="Notifications" styleClass="nav-btn"/>
+            <Button text="Profile" styleClass="nav-btn"/>
+            <Button text="Settings" styleClass="nav-btn"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <Label text="Welcome to SmartDesk Dashboard!" styleClass="welcome-text"/>
+        </StackPane>
+    </center>
+
+</BorderPane>

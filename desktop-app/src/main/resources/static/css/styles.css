@@ -1,0 +1,53 @@
+
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.top-bar {
+    -fx-background-color: #2563eb; /* MS Blue */
+    -fx-padding: 12;
+    -fx-alignment: center-left;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.profile-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.sidebar {
+    -fx-background-color: #f3f4f6;
+    -fx-padding: 20;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+    -fx-alignment: center-left;
+    -fx-padding: 10 20;
+}
+
+.nav-btn:hover {
+    -fx-background-color: #e5e7eb;
+}
+
+.content-area {
+    -fx-padding: 30;
+    -fx-background-color: white;
+}
+
+.welcome-text {
+    -fx-font-size: 18px;
+    -fx-text-fill: #374151;
+}
+
+
+
+.title { -fx-font-size: 22px; -fx-font-weight: bold; }

@@ -11,6 +11,69 @@
 # Help: https://bootstrapmade.com/color-system/
 --------------------------------------------------------------*/
 /* Fonts */
+
+
+#chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  font-family: Arial, sans-serif;
+  z-index: 9999;
+}
+
+#chatbot-header {
+  background-color: #2d89ef;
+  color: white;
+  padding: 10px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+}
+
+#chatbot-body {
+  display: none;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-top: none;
+  background: white;
+  max-height: 400px;
+  height: 350px;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+#chatbox {
+  height: 280px;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#chatbox p {
+  margin: 5px 0;
+}
+
+#chat-input {
+  width: calc(100% - 60px);
+  padding: 5px;
+  border: none;
+  border-top: 1px solid #ccc;
+}
+
+#chatbot-body button {
+  width: 50px;
+  border: none;
+  background-color: #2d89ef;
+  color: white;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+  cursor: pointer;
+}
+
+
+
+
 :root {
   --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Jost",  sans-serif;
