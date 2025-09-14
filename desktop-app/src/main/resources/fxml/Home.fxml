@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.HomeController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="top-bar">
+            <Label text="SmartDesk" styleClass="app-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Profile" styleClass="profile-btn" onAction="#openProfile"/>
+        </HBox>
+    </top>
+
+    <!-- Left Sidebar -->
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <Button fx:id="companyBtn" text="Company Dashboard" styleClass="nav-btn"/>
+            <Button fx:id="employeeBtn" text="Employee Dashboard" styleClass="nav-btn"/>
+            <Button fx:id="superadminBtn" text="Superadmin Dashboard" styleClass="nav-btn" onAction="#openSuperadminDashboard"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+
+<!--            <Label text="Welcome to SmartDesk Dashboard!" styleClass="welcome-text"/>-->
+        </StackPane>
+    </center>
+
+</BorderPane>

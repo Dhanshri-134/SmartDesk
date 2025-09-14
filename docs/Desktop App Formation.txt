@@ -1,0 +1,24 @@
+mvn archetype:generate `
+  "-DgroupId=com.smartdesk" `
+  "-DartifactId=desktop-app" `
+  "-DarchetypeArtifactId=maven-archetype-quickstart" `
+  "-DarchetypeVersion=1.4" `
+  "-DinteractiveMode=false"
+
+mvn clean install
+
+mvn exec:java "-Dexec.mainClass=com.smartdesk.App"
+
+mvn clean package
+
+target/desktop-app-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+java -jar target/desktop-app-1.0-SNAPSHOT-jar-with-dependencies.jar  
+========================
+if version is 3.1.0
+========================
+
+java -cp target/desktop-app-1.0-SNAPSHOT.jar com.smartdesk.App
+========================
+if version is 3.1.1
+========================
