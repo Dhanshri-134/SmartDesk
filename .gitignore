@@ -1,1 +1,25 @@
 .env 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+
+# Django media (optional, जर resumes track करायचे नसतील तर)
+# media/
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+
+# IDE settings
+.idea/
+.vscode/
+*.swp
+.DS_Store

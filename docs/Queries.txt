@@ -1,1 +1,7 @@
  CREATE DATABASE webcompdb CHARACTER SET utf8mb4;
+
+
+
+from django.contrib.auth.models import User
+  User.objects.create_user(username="admin@example.com", email="admin@example.com", p
+  assword="admin123", is_staff=True)g.

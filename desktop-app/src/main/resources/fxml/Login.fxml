@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<!--<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.smartdesk.app.controller.LoginController"-->
+<!--      spacing="16" alignment="CENTER" stylesheets="@/static/css/styles.css" >-->
+<!--    <padding><Insets topRightBottomLeft="24"/></padding>-->
+<!--    <Label text="SmartDesk" styleClass="title"/>-->
+<!--    <Label text="Sign in to continue" />-->
+<!--    <TextField fx:id="usernameField" promptText="Username" />-->
+<!--    <PasswordField fx:id="passwordField" promptText="Password" />-->
+<!--    <Button text="Sign In" onAction="#onLogin"/>-->
+<!--    <Separator/>-->
+<!--    <Button text="Use Face Recognition" onAction="#onFaceLogin" />-->
+<!--    <Label fx:id="statusLabel" />-->
+<!--</VBox>-->
