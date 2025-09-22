@@ -33,7 +33,13 @@ class Applicant(models.Model):
     joining_date = models.CharField(max_length=50, blank=True, null=True)
     username = models.CharField(max_length=50, blank=True, null=True)
     generated_password = models.CharField(max_length=50, blank=True, null=True)
+    ats_score = models.FloatField(default=0.0)
 
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='Pending'
+    )
 
 
     def __str__(self):

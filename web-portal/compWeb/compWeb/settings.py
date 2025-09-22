@@ -76,13 +76,14 @@ WSGI_APPLICATION = 'compWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'webcompdb'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASS', '8329'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '3306'),
+        'NAME': 'webcompdb',
+        'USER': 'root',
+        'PASSWORD': '8329',  # Your MySQL root password
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -119,6 +120,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('SMTP_USER')
-EMAIL_HOST_PASSWORD = os.getenv('SMTP_PASS')
+EMAIL_HOST_USER = 'harelsamiksha127@gmail.com'  # Your Gmail )address
+EMAIL_HOST_PASSWORD = 'ahzw kfvy afsy awad'  # Use Gmail App Password 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

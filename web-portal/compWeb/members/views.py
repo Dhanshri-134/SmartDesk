@@ -1,26 +1,25 @@
 import datetime
+import io
+import os
+import re
 import string
 from difflib import SequenceMatcher
 
-from django.conf import settings
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render
-from django.template import loader
-from django.template.loader import render_to_string,get_template
-from xhtml2pdf import pisa
-from django.templatetags.static import static
-import io
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
-from django.contrib import messages
-import re
-import os
 import docx2txt
 import PyPDF2
-from .models import Applicant, Notification, Visitor
-from .forms import ApplicantForm
+from xhtml2pdf import pisa
+
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.shortcuts import get_object_or_404, redirect
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, render, redirect
+from django.template import loader
+from django.template.loader import render_to_string, get_template
+
+from .forms import ApplicantForm
+from .models import Applicant, Notification, Visitor
 from .utils import generate_joining_letter_pdf, send_joining_letter_email
 
 
@@ -75,11 +74,6 @@ def load_keywords():
 ROLE_KEYWORDS = load_keywords()
 
 
-
-
-
-import re
-from difflib import SequenceMatcher
 
 def calculate_ats_score(resume_text, role_keywords, common_keywords=None):
     """
@@ -152,33 +146,33 @@ def calculate_ats_score(resume_text, role_keywords, common_keywords=None):
 #         form = ApplicantForm()
 #     return render(request, 'registration_form.html', {'form': form})
 #def register_applicant(request):
-   #if request.method == 'POST':
-       # form = ApplicantForm(request.POST, request.FILES)
-        #if form.is_valid():
-           # applicant = form.save(commit=False)
-           # applicant.country_code = form.cleaned_data['country_code']
+#if request.method == 'POST':
+# form = ApplicantForm(request.POST, request.FILES)
+#if form.is_valid():
+# applicant = form.save(commit=False)
+# applicant.country_code = form.cleaned_data['country_code']
             #applicant.contact = form.cleaned_data['contact']
 
-           # resume_file = request.FILES['resume']
-           ## resume_text = extract_text_from_resume(resume_file)
-           # print(f"Resume Text Extracted:\n{resume_text[:1000]}")  # DEBUG: print first 1000 chars
+# resume_file = request.FILES['resume']
+## resume_text = extract_text_from_resume(resume_file)
+# print(f"Resume Text Extracted:\n{resume_text[:1000]}")  # DEBUG: print first 1000 chars
 
-           # role = form.cleaned_data['role']
-           # keywords = ROLE_KEYWORDS.get(role, []) + ROLE_KEYWORDS.get("Common", [])
+# role = form.cleaned_data['role']
+# keywords = ROLE_KEYWORDS.get(role, []) + ROLE_KEYWORDS.get("Common", [])
 
-           # print(f"Loaded {len(keywords)} keywords for role: {role}")  # DEBUG
+# print(f"Loaded {len(keywords)} keywords for role: {role}")  # DEBUG
 
-           # ats_score = calculate_ats_score(resume_text, keywords)
+# ats_score = calculate_ats_score(resume_text, keywords)
 
-           # applicant.ats_score = ats_score
-           # applicant.status = 'Pending'
-           # applicant.save()
+# applicant.ats_score = ats_score
+# applicant.status = 'Pending'
+# applicant.save()
 
-          #  messages.success(request, f'Application submitted! ATS Score: {ats_score}')
-          #  return redirect('application_success', applicant_id=applicant.id)
-   # else:
+#  messages.success(request, f'Application submitted! ATS Score: {ats_score}')
+#  return redirect('application_success', applicant_id=applicant.id)
+# else:
         #form = ApplicantForm()
-   # return render(request, 'registration_form.html', {'form': form})
+# return render(request, 'registration_form.html', {'form': form})
 
 
 
@@ -243,30 +237,30 @@ def notification(request):
     return render(request, 'adminDashboard/pages/notifications.html', {'notifications': notifications})
 
 def members(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 
 def index(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
  
 def blog(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 def serviceDetails(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 def hiredEmp(request):
-   applicants = Applicant.objects.all()
-   return render(request, 'hiredEmp.html', {'applicants': applicants})
+    applicants = Applicant.objects.all()
+    return render(request, 'hiredEmp.html', {'applicants': applicants})
 # email and joind letter
 
 def contactForm(request):
-   template = loader.get_template('index.html')
-   return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)

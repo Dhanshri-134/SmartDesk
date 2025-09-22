@@ -38,6 +38,7 @@
             <table class="table align-items-center justify-content-center mb-0">
               <thead>
                 <tr>
+<<<<<<< HEAD
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr No.</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
@@ -46,6 +47,15 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Resume</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+=======
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>ATS Score</th>
+                  <th>Status</th>
+                  <th>Resume</th>
+                  <th>Action</th>
+>>>>>>> eafe847 (WIP: local changes before merging Dhanshri branch)
                 </tr>
               </thead>
               <tbody id="applicantTable">
@@ -66,8 +76,7 @@
                         bg-danger
                       {% else %}
                         bg-secondary
-                      {% endif %}
-                    ">
+                      {% endif %}">
                       {{ applicant.status }}
                     </span>
                   </td>
@@ -92,7 +101,11 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Hired Employees Table -->
+=======
+  <!-- Hired Employees -->
+>>>>>>> eafe847 (WIP: local changes before merging Dhanshri branch)
   <div class="row">
     <div class="col-12">
       <div class="card my-4">
@@ -106,10 +119,11 @@
             <table class="table align-items-center justify-content-center mb-0">
               <thead>
                 <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Resume</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Resume</th>
+                  <th>Joining Letter</th>
                 </tr>
               </thead>
               <tbody id="hiredTable">
@@ -121,6 +135,13 @@
                   <td>
                     <a href="{{ applicant.resume.url }}" target="_blank" class="btn btn-primary btn-sm">View Resume</a>
                   </td>
+                  <td>
+                    <span class="text-success">Joining Letter Sent</span>
+                  </td>
+                </tr>
+                {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center">No hired employees yet</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -130,6 +151,7 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 </main>
 
 <!-- Scripts -->
@@ -181,4 +203,30 @@
   });
 </script>
 
+=======
+
+  <script>
+    function updateStatus(id, status) {
+      fetch(`/update_status/${id}/`, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": "{{ csrf_token }}",
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `status=${status}`
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) location.reload();
+      });
+    }
+
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll("#applicantTable tr").forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(q) ? "" : "none";
+      });
+    });
+  </script>
+>>>>>>> eafe847 (WIP: local changes before merging Dhanshri branch)
 {% endblock %}

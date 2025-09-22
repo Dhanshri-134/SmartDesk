@@ -21,11 +21,10 @@ urlpatterns = [
     path('chatbot/', views.chatbot, name='chatbot'),
     path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
     path('register/', views.register_applicant, name='register_applicant'),
-     path('success/<int:applicant_id>/', views.registration_success, name='application_success'),
-    # path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
-
-   
-    
+    path('success/<int:applicant_id>/', views.registration_success, name='application_success'),
+    # path('offer-letter/', views.generate_offer_letter, name='offer_letter')
+    #path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
+    #path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
 ]
 
 if settings.DEBUG:
