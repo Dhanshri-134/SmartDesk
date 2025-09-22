@@ -24,6 +24,7 @@ from django.shortcuts import get_object_or_404, redirect
 from .utils import generate_joining_letter_pdf, send_joining_letter_email
 
 
+
 def hire_applicant(request, applicant_id):
     applicant = get_object_or_404(Applicant, id=applicant_id)
     applicant.status = "Hired"
@@ -36,6 +37,8 @@ def hire_applicant(request, applicant_id):
         messages.error(request, "Failed to send joining letter")
 
     return redirect('tables')
+
+
 
 
 
@@ -148,6 +151,34 @@ def calculate_ats_score(resume_text, role_keywords, common_keywords=None):
 #     else:
 #         form = ApplicantForm()
 #     return render(request, 'registration_form.html', {'form': form})
+#def register_applicant(request):
+   #if request.method == 'POST':
+       # form = ApplicantForm(request.POST, request.FILES)
+        #if form.is_valid():
+           # applicant = form.save(commit=False)
+           # applicant.country_code = form.cleaned_data['country_code']
+            #applicant.contact = form.cleaned_data['contact']
+
+           # resume_file = request.FILES['resume']
+           ## resume_text = extract_text_from_resume(resume_file)
+           # print(f"Resume Text Extracted:\n{resume_text[:1000]}")  # DEBUG: print first 1000 chars
+
+           # role = form.cleaned_data['role']
+           # keywords = ROLE_KEYWORDS.get(role, []) + ROLE_KEYWORDS.get("Common", [])
+
+           # print(f"Loaded {len(keywords)} keywords for role: {role}")  # DEBUG
+
+           # ats_score = calculate_ats_score(resume_text, keywords)
+
+           # applicant.ats_score = ats_score
+           # applicant.status = 'Pending'
+           # applicant.save()
+
+          #  messages.success(request, f'Application submitted! ATS Score: {ats_score}')
+          #  return redirect('application_success', applicant_id=applicant.id)
+   # else:
+        #form = ApplicantForm()
+   # return render(request, 'registration_form.html', {'form': form})
 
 
 
@@ -155,6 +186,9 @@ def calculate_ats_score(resume_text, role_keywords, common_keywords=None):
 def registration_success(request, applicant_id):
     applicant = get_object_or_404(Applicant, id=applicant_id)
     return render(request, 'success.html', {'applicant': applicant})
+
+
+
 
 
 def register_applicant(request):
@@ -216,13 +250,10 @@ def members(request):
 def index(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
-
-
  
 def blog(request):
   template = loader.get_template('index.html')
   return HttpResponse(template.render())
-
 
 def serviceDetails(request):
   template = loader.get_template('index.html')
@@ -261,11 +292,12 @@ def update_status(request, id):
         applicant.status = new_status
         applicant.save()
 
-        # If hired, generate offer letter & send email
+        # If hired, send joining letter email
         if new_status == "Hired":
             send_joining_letter_email(applicant)
 
         return JsonResponse({'success': True}) 
+
 
 
 def billing(request):
