@@ -17,27 +17,21 @@ urlpatterns = [
     path('notifications/', views.notification, name='notification'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('login/', views.admin_login, name='login'),
-<<<<<<< Updated upstream
+    
+
+
     path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
-=======
     #path('hiredEmp/', views.hiredEmp, name='hiredEmp'),
->>>>>>> Stashed changes
-    path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
+    #path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
 
     path('billing/', views.billing, name='billing'),
 
     path('register/', views.register_applicant, name='register_applicant'),
-    #path('success/', views.registration_success, name='success'),
     path('success/<int:applicant_id>/', views.registration_success, name='application_success'),
     path('update_status/<int:id>/', views.update_status, name='update_status'),
-<<<<<<< Updated upstream
 
+   
 
-
-
-=======
-    path('offer-letter/', views.generate_offer_letter, name='offer_letter'),
->>>>>>> Stashed changes
 ]
 
 
