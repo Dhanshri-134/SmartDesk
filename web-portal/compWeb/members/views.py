@@ -37,7 +37,6 @@ def hire_applicant(request, applicant_id):
 
 
 
-
 def extract_text_from_resume(resume_file):
     ext = os.path.splitext(resume_file.name)[1].lower()
     if ext == '.pdf':
@@ -85,7 +84,7 @@ def calculate_ats_score(resume_text, role_keywords):
     return round(score, 2)
 
 
-<<<<<<< HEAD
+
 #def register_applicant(request):
    #if request.method == 'POST':
        # form = ApplicantForm(request.POST, request.FILES)
@@ -114,7 +113,7 @@ def calculate_ats_score(resume_text, role_keywords):
    # else:
         #form = ApplicantForm()
    # return render(request, 'registration_form.html', {'form': form})
-=======
+
 # def register_applicant(request):
 #     if request.method == 'POST':
 #         form = ApplicantForm(request.POST, request.FILES)
@@ -143,7 +142,7 @@ def calculate_ats_score(resume_text, role_keywords):
 #     else:
 #         form = ApplicantForm()
 #     return render(request, 'registration_form.html', {'form': form})
->>>>>>> origin/Feature/Dhanshri
+
 
 
 
@@ -205,18 +204,31 @@ def notification(request):
     return render(request, 'adminDashboard/pages/notifications.html', {'notifications': notifications})
 
 def members(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 
 def index(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 
+ 
+def blog(request):
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
+
+def serviceDetails(request):
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
+
+def hiredEmp(request):
+    applicants = Applicant.objects.all()
+    return render(request, 'hiredEmp.html', {'applicants': applicants})
+   
 def contactForm(request):
-  template = loader.get_template('index.html')
-  return HttpResponse(template.render())
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render())
 
 @login_required
 @user_passes_test(lambda u: u.is_staff)
@@ -224,7 +236,7 @@ def dashboard(request):
     applicants = Applicant.objects.all()
     visitor_count = Visitor.objects.count()
     hired_count = Applicant.objects.filter(status='Hired').count()
-<<<<<<< HEAD
+
     applicant_count = applicants.count() - hired_count
     notifications = Notification.objects.order_by('-created_at')
     
@@ -235,13 +247,8 @@ def dashboard(request):
         'hired_count': hired_count,
         'notifications': notifications
     })
-=======
-    applicant_count = applicants.count()-hired_count
-    notifications = Notification.objects.order_by('-created_at')
-    return render(request, 'adminDashboard/index.html', {'applicants': applicants, 'visitor_count': visitor_count,'applicant_count': applicant_count,'hired_count':hired_count, 'notifications': notifications})
 
->>>>>>> origin/Feature/Dhanshri
-
+    
 def update_status(request, id):
     if request.method == "POST":
         applicant = get_object_or_404(Applicant, id=id)
@@ -253,7 +260,7 @@ def update_status(request, id):
         if new_status == "Hired":
             send_joining_letter_email(applicant)
 
-        return JsonResponse({'success': True})
+        return JsonResponse({'success': True}) 
 
 
 
