@@ -323,7 +323,7 @@ def chatbot(request):
             app_id = match.group("id").upper()
 
             try:
-                app = Applicant.objects.get(applicant_id=app_id, name__iexact=name)
+                app = Applicant.objects.get(id=app_id, name__iexact=name)
                 return JsonResponse({"reply": f"Status for {name} (ID: {app_id}) is: {app.status}"})
             except Applicant.DoesNotExist:
                 return JsonResponse({"reply": "No application found with that name and ID."})

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.facerecognition.FaceLoginController"
+            prefWidth="600" prefHeight="500"
+            style="-fx-background-color: linear-gradient(to bottom right, #1E3C72, #2A5298);">
+
+    <VBox alignment="CENTER" spacing="15.0" layoutX="100" layoutY="40">
+        <Label text="SmartDesk Login" 
+            style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+
+        <!-- Camera Preview -->
+        <ImageView fx:id="cameraView" fitWidth="300" fitHeight="200" preserveRatio="true" 
+                style="-fx-border-color: white; -fx-border-width: 2;" />
+
+        <!-- Username -->
+        <TextField fx:id="usernameField" promptText="Enter Username" 
+                maxWidth="250"
+                style="-fx-background-radius: 10; -fx-padding: 8;" />
+
+       <!-- Password with Eye Icon -->
+<HBox alignment="CENTER_LEFT" spacing="0" maxWidth="250">
+    <!-- Stack the password fields on top of each other -->
+    <StackPane>
+        <PasswordField fx:id="passwordField" promptText="Enter Password"
+                       prefWidth="220"
+                       style="-fx-background-radius: 10; -fx-padding: 8;" />
+        <TextField fx:id="passwordVisibleField" promptText="Enter Password"
+                   prefWidth="250" visible="false"
+                   style="-fx-background-radius: 10; -fx-padding: 8;" />
+    </StackPane>
+
+    <!-- Eye button right next to password field -->
+    <Button fx:id="eyeButton" text="👁" onAction="#togglePasswordVisibility"
+            style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 0 0 0 5;"/>
+</HBox>
+
+
+        
+        <!-- Buttons for login -->
+        <HBox alignment="CENTER" spacing="15">
+            <Button text="Register Face" onAction="#onOpenRegisterFace"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; 
+                    -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;" />
+
+            <Button text="Face Login" 
+                    onAction="#onLoginFace"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;" />
+
+            <Button text="Password Login" 
+                    onAction="#onLoginPassword"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;" />
+        </HBox>
+
+        <!-- Forgot Password -->
+        <Button text="Forgot Password?" 
+                onAction="#onForgotPassword"
+                style="-fx-background-color: transparent; -fx-text-fill: #ffcc00; -fx-underline: true; -fx-font-size: 13px;" />
+
+       
+
+
+        <!-- Status Label -->
+        <Label fx:id="statusLabel" text="Status messages appear here" 
+                wrapText="true" 
+                style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10;" />
+    </VBox>
+
+</AnchorPane>

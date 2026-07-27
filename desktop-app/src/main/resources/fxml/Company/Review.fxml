@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
+      alignment="TOP_LEFT">
+
+    <padding>
+        <Insets top="25" left="25" right="25" bottom="25"/>
+    </padding>
+
+    <Label text="Employee Reviews" styleClass="section-title"/>
+
+    <VBox spacing="15">
+
+        <VBox styleClass="card">
+            <Label text="John (Developer)"/>
+            <Label text="Excellent performance in ERP project."/>
+        </VBox>
+
+        <VBox styleClass="card">
+            <Label text="Priya (Manager)"/>
+            <Label text="Strong leadership &amp; client coordination."/>
+        </VBox>
+
+        <VBox styleClass="card">
+            <Label text="Amit (Tester)"/>
+            <Label text="Needs improvement in deadline management."/>
+        </VBox>
+
+    </VBox>
+
+</VBox>

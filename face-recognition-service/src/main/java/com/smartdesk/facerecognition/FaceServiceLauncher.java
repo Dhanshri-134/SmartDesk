@@ -4,34 +4,41 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class FaceServiceLauncher extends Application {
 
-    private AnnotationConfigApplicationContext context;
-
-    @Override
-    public void init() {
-        // Initialize Spring context so FaceService can be autowired
-        context = new AnnotationConfigApplicationContext(FaceService.class);
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FaceService faceService = context.getBean(FaceService.class);
+        // Load OpenCV library
+//        System.loadLibrary(org.opencv.core.Core.NATIVE_LIBRARY_NAME);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/face_login.fxml"));
-        loader.setControllerFactory(param -> new FaceLoginController(faceService));
-
+        // Load Face Login FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/face_login.fxml"));
         Scene scene = new Scene(loader.load());
-        primaryStage.setTitle("SmartDesk Face Login");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
 
-    @Override
-    public void stop() {
-        context.close();
+        FaceLoginController controller = loader.getController();
+        controller.setStage(primaryStage); // So camera can stop on close
+
+        // Define action after successful verification
+        controller.setOnVerified(() -> {
+            System.out.println("User verified! Loading Face Register...");
+
+            try {
+                FXMLLoader regLoader = new FXMLLoader(getClass().getResource("/fxml/face_register.fxml"));
+                Scene regScene = new Scene(regLoader.load());
+                FaceRegisterController regController = regLoader.getController();
+                regController.setStage(primaryStage);
+
+                primaryStage.setScene(regScene);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        primaryStage.setTitle("SmartDesk Face Recognition");
+        primaryStage.setScene(scene);
+        primaryStage.setOnCloseRequest(event -> controller.stopCamera()); // Ensure camera cleanup
+        primaryStage.show();
     }
 
     public static void main(String[] args) {

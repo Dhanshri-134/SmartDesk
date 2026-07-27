@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.FaceAuthDialogController"
+            prefWidth="920"
+            prefHeight="620"
+            style="-fx-background-color: #0f172a;">
+    <top>
+        <VBox spacing="8" style="-fx-padding: 22 22 10 22;">
+            <Label fx:id="titleLabel" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+            <Label fx:id="subtitleLabel"
+                   wrapText="true"
+                   style="-fx-text-fill: #cbd5e1; -fx-font-size: 13px;"/>
+        </VBox>
+    </top>
+
+    <center>
+        <HBox spacing="18" style="-fx-padding: 0 22 18 22;">
+            <VBox spacing="12" HBox.hgrow="ALWAYS">
+                <ImageView fx:id="cameraView"
+                           fitWidth="620"
+                           fitHeight="420"
+                           preserveRatio="true"
+                           style="-fx-background-color: black; -fx-border-color: #38bdf8; -fx-border-width: 2;"/>
+                <Label fx:id="currentPoseLabel"
+                       wrapText="true"
+                       style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+                <Label fx:id="statusLabel"
+                       wrapText="true"
+                       style="-fx-text-fill: #e2e8f0; -fx-font-size: 13px;"/>
+            </VBox>
+
+            <VBox fx:id="enrollmentPanel"
+                  spacing="12"
+                  prefWidth="220"
+                  style="-fx-background-color: #111c33; -fx-background-radius: 14; -fx-padding: 18;">
+                <Label text="Required Poses"
+                       style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <ListView fx:id="poseChecklist" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-padding: 0 22 22 22;">
+            <Button fx:id="captureButton" text="Capture Pose" onAction="#onCapturePose"/>
+            <Button fx:id="verifyButton" text="Verify Face" onAction="#onVerify"/>
+            <Button fx:id="finishButton" text="Finish Enrollment" onAction="#onFinish"/>
+            <Button text="Cancel" onAction="#onCancel"/>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.CompanyDashboardController">
+
+    <top>
+        <HBox spacing="10" styleClass="top-bar">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+
+            <Label text="Company Admin Dashboard" styleClass="title-text"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" onAction="#refreshPage"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="logout-btn"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
+
+            <Label text="Company Controls" styleClass="sidebar-title"/>
+
+            <Button text="Overview" onAction="#showOverview" styleClass="nav-btn"/>
+            <Button text="Employees" onAction="#showEmployees" styleClass="nav-btn"/>
+            <Button text="Projects" onAction="#showProjects" styleClass="nav-btn"/>
+            <Button text="Access Rights" onAction="#showAccessRights" styleClass="nav-btn"/>
+            <Button text="Subscription" onAction="#showSubscription" styleClass="nav-btn"/>
+            <Button text="Reviews" onAction="#showReviews" styleClass="nav-btn"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea">
+            <Label text="Loading company dashboard..."
+                   style="-fx-font-size:18px;"/>
+        </StackPane>
+    </center>
+</BorderPane>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.EmployeeDashboardController"
+            stylesheets="@/static/css/employee-dashboard.css">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="top-bar">
+            <Label text="Employee Dashboard" styleClass="app-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" onAction="#refreshPage"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="profile-btn" fx:id="logoutBtn"/>
+        </HBox>
+    </top>
+
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+        
+            <Button text="My Profile" fx:id="profileBtn" styleClass="nav-btn" onAction="#handleProfileBtn"/>
+            <Button text="My Tasks" fx:id="tasksBtn" styleClass="nav-btn"/>
+            <Button text="Performance" fx:id="performanceBtn" styleClass="nav-btn"/>
+            <Button text="Notification" fx:id="notification" styleClass="nav-btn"/>
+            <Button text="History" fx:id="historybtn" styleClass="nav-btn"/>
+            <Button text="Chat" fx:id="chat" styleClass="nav-btn"/>
+            <Button text="Projects" fx:id="projectbtn" styleClass="nav-btn"/>
+            <Button text="Meetings" fx:id="meetingbtn" styleClass="nav-btn" onAction="#handleMeetingBtn"/>
+        </VBox>
+    </left>
+
+    <!-- Content -->
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <Label text="Welcome to Employee Dashboard!" styleClass="welcome-text"/>
+        </StackPane>
+    </center>
+
+</BorderPane>

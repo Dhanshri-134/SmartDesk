@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.smartdesk.facerecognition.FaceRegisterController" prefWidth="700" prefHeight="420" style="-fx-background-color: linear-gradient(to bottom right, #1E3C72, #2A5298);">
+    <children>
+        <!-- Title -->
+        <Label text="Face Register Dashboard" layoutX="200" layoutY="20" 
+        style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+
+        <!-- Username -->
+        <Label text="Username:" layoutX="100" layoutY="90" style="-fx-text-fill: white;"/>
+
+        <TextField fx:id="usernameField" layoutX="200" layoutY="85" prefWidth="250"  promptText="Enter Username" 
+        style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill:black !important ; -fx-prompt-text-fill:#cccccc; -fx-background-color: white;-fx-border-color: lightgray;" />
+
+        <!-- Password -->
+        <Label text="Password:" layoutX="100" layoutY="140" style="-fx-text-fill: white;"/>
+
+        <PasswordField fx:id="passwordField" layoutX="200" layoutY="135" prefWidth="220"  promptText="Enter Password"  style="-fx-font-size: 14px; -fx-text-fill: white; -fx-prompt-text-fill: #cccccc;"/>
+        <TextField fx:id="passwordVisibleField" layoutX="200" layoutY="135" prefWidth="220" visible="false" managed="false" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: white;-fx-prompt-text-fill: #cccccc;" />
+
+        <!-- Eye icon -->
+        <Button fx:id="togglePasswordBtn" layoutX="430" layoutY="135" text="👁" onAction="#togglePasswordVisibility"/>
+
+        <!-- Face Capture -->
+        <Label text="Face Capture:" layoutX="100" layoutY="195" style="-fx-text-fill: white;"/>
+
+        <ImageView fx:id="cameraView" layoutX="200" layoutY="190" fitWidth="250" fitHeight="150" style="-fx-border-color: white; -fx-border-width: 1px;-fx-background-color: #000000;"/>
+
+        <!-- Register Button -->
+        <Button text="Register" layoutX="250" layoutY="370" onAction="#registerFace" style="-fx-background-color: #4CAF50; -fx-text-fill: white; 
+                    -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;" />
+        <Button text="Cancel" layoutX="380" layoutY="370" onAction="#cancelRegistration" style="-fx-background-color: #4CAF50; -fx-text-fill: white; 
+                    -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;" />
+
+                    
+        <!-- Capture button -->
+        <Button fx:id="captureButton" layoutX="0" layoutY="370" text="Capture Face" style="-fx-background-color: #4CAF50; -fx-text-fill: white; 
+                    -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 10 20;"/>
+        
+        
+
+
+    </children>
+</AnchorPane>

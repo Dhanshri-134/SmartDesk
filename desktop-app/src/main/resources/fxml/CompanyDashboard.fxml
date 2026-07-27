@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
 
-<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
-<!--            xmlns:fx="http://javafx.com/fxml"-->
-<!--            fx:controller="fxml.CompanyDashboard"-->
-<!--            prefHeight="400.0" prefWidth="600.0">-->
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.CompanyDashboardController">
 
-<!--</AnchorPane>-->
+    <top>
+        <HBox spacing="10" styleClass="top-bar">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
 
+            <Label text="Company Admin Dashboard" styleClass="title-text"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" onAction="#refreshPage"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="logout-btn"/>
+        </HBox>
+    </top>
 
-<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.smartdesk.controllers.SuperAdminDashboardController">
+    <left>
+        <VBox spacing="15" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
 
-<!-- Top Bar -->
-<top>
-    <HBox styleClass="top-bar">
-        <Label text="SmartDesk" styleClass="app-title"/>
-        <Pane HBox.hgrow="ALWAYS"/>
-        <Button text="Profile" styleClass="profile-btn"/>
-    </HBox>
-</top>
+            <Label text="Company Controls" styleClass="sidebar-title"/>
 
-<!-- Left Sidebar -->
-<left>
-    <VBox spacing="15" styleClass="sidebar">
-        <Button text="Dashboard" styleClass="nav-btn"/>
-        <Button text="Employees" styleClass="nav-btn"/>
-        <Button text="Projects" styleClass="nav-btn"/>
-        <Button text="Performance" styleClass="nav-btn"/>
-        <Button text="Meetings" styleClass="nav-btn"/>
-        <Button text="Settings" styleClass="nav-btn"/>
-    </VBox>
-</left>
+            <Button text="Overview" onAction="#showOverview" styleClass="nav-btn"/>
+            <Button text="Employees" onAction="#showEmployees" styleClass="nav-btn"/>
+            <Button text="Projects" onAction="#showProjects" styleClass="nav-btn"/>
+            <Button text="Access Rights" onAction="#showAccessRights" styleClass="nav-btn"/>
+            <Button text="Subscription" onAction="#showSubscription" styleClass="nav-btn"/>
+            <Button text="Reviews" onAction="#showReviews" styleClass="nav-btn"/>
+        </VBox>
+    </left>
 
-<!-- Main Content -->
-<center>
-    <StackPane fx:id="contentArea" styleClass="content-area">
-        <Label text="Welcome to SmartDesk Dashboard!" styleClass="welcome-text"/>
-    </StackPane>
-</center>
-
+    <center>
+        <StackPane fx:id="contentArea">
+            <Label text="Loading company dashboard..."
+                   style="-fx-font-size:18px;"/>
+        </StackPane>
+    </center>
 </BorderPane>

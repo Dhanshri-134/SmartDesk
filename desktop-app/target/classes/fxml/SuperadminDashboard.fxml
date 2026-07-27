@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.smartdesk.controllers.SuperAdminDashboardController"
+            stylesheets="@/static/css/dashboard.css">
+
+    <top>
+        <HBox spacing="15" styleClass="top-bar" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+            <Label text="SmartDesk - Superadmin" styleClass="app-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" onAction="#refreshPage"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="logout-btn"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox spacing="10" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
+            <Label text="Platform Controls" styleClass="sidebar-title"/>
+
+            <Button text="Overview" onAction="#showOverview" styleClass="nav-btn"/>
+            <Button text="Companies" onAction="#showCompanies" styleClass="nav-btn"/>
+            <Button text="Credentials" onAction="#showCredentials" styleClass="nav-btn"/>
+            <Button text="Payments" onAction="#showPayments" styleClass="nav-btn"/>
+            <Button text="Pricing" onAction="#showPricing" styleClass="nav-btn"/>
+            <Button text="Feedback" onAction="#showFeedback" styleClass="nav-btn"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <Label text="Loading superadmin dashboard..."/>
+        </StackPane>
+    </center>
+
+</BorderPane>

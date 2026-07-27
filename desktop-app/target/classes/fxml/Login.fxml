@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.smartdesk.controllers.LoginController"
+      spacing="16"
+      alignment="CENTER"
+      style="-fx-padding: 24;">
+
+    <Label text="SmartDesk" styleClass="title"/>
+    <Label text="Sign in to continue"/>
+
+    <TextField fx:id="usernameField" promptText="Username"/>
+    <PasswordField fx:id="passwordField" promptText="Password"/>
+
+    <Button text="Sign In" onAction="#onLogin"/>
+
+    <Label fx:id="statusLabel"/>
+
+</VBox>

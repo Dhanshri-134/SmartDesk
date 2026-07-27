@@ -6,17 +6,4 @@
     <Label text="Welcome to SmartDesk Dashboard" layoutX="50" layoutY="50" style="-fx-font-size:18px;"/>
 </AnchorPane>
 
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
 
-<!--<?import java.lang.*?>-->
-<!--<?import java.util.*?>-->
-<!--<?import javafx.scene.*?>-->
-<!--<?import javafx.scene.control.*?>-->
-<!--<?import javafx.scene.layout.*?>-->
-
-<!--<AnchorPane xmlns="http://javafx.com/javafx"-->
-<!--            xmlns:fx="http://javafx.com/fxml"-->
-<!--            fx:controller="fxml.Dashboard"-->
-<!--            prefHeight="400.0" prefWidth="600.0">-->
-
-<!--</AnchorPane>-->

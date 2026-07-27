@@ -4,7 +4,7 @@
 }
 
 .top-bar {
-    -fx-background-color: #2563eb; /* MS Blue */
+    -fx-background-color: #1e293b; /* MS Blue */
     -fx-padding: 12;
     -fx-alignment: center-left;
 }
@@ -51,3 +51,61 @@
 
 
 .title { -fx-font-size: 22px; -fx-font-weight: bold; }
+
+
+
+
+.sidebar {
+    -fx-background-color: #0f172a;
+    -fx-padding: 20;
+}
+
+.sidebar .button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.sidebar .button:hover {
+    -fx-background-color: #1e293b;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+    -fx-min-width: 220px;
+}
+
+.stack-pane {
+    -fx-background-color: #f3f4f6;
+}
+
+.title-text {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.sidebar {
+    -fx-background-color: #111827;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.nav-btn:hover {
+    -fx-background-color: #374151;
+}
+
+.logout-btn {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+}
+
+
+

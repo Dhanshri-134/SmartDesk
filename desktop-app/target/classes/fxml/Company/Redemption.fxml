@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
+      alignment="TOP_LEFT"
+      styleClass="content-area">
+
+    <padding>
+        <Insets top="25" left="25" right="25" bottom="25"/>
+    </padding>
+
+    <Label text="Employee Redemption &amp; Rewards" styleClass="section-title"/>
+
+    <HBox spacing="20">
+        <VBox styleClass="card">
+            <Label text="Bonus Offer"/>
+            <Label text="10 Points Extra This Month"/>
+        </VBox>
+
+        <VBox styleClass="card">
+            <Label text="Top Performer Reward"/>
+            <Label text="1% Salary Increment"/>
+        </VBox>
+
+        <VBox styleClass="card">
+            <Label text="Points Conversion"/>
+            <Label text="1 Point = ₹100 Voucher"/>
+        </VBox>
+    </HBox>
+
+</VBox>

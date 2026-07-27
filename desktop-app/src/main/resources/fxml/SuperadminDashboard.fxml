@@ -1,37 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-
 <BorderPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.smartdesk.controllers.SuperAdminDashboardController">
+            fx:controller="com.smartdesk.controllers.SuperAdminDashboardController"
+            stylesheets="@/static/css/dashboard.css">
 
-    <!-- Top Bar -->
     <top>
-        <HBox styleClass="top-bar">
-            <Label text="SmartDesk" styleClass="app-title"/>
+        <HBox spacing="15" styleClass="top-bar" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="20" bottom="15" left="20"/>
+            </padding>
+            <Label text="SmartDesk - Superadmin" styleClass="app-title"/>
             <Pane HBox.hgrow="ALWAYS"/>
-            <Button text="Profile" styleClass="profile-btn"/>
+            <Button text="Refresh" onAction="#refreshPage"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="logout-btn"/>
         </HBox>
     </top>
 
-    <!-- Left Sidebar -->
     <left>
-        <VBox spacing="15" styleClass="sidebar">
-            <Button text="Company" styleClass="nav-btn"/>
-            <Button text="Employees" styleClass="nav-btn"/>
-            <Button text="Projects" styleClass="nav-btn"/>
-            <Button text="Notifications" styleClass="nav-btn"/>
-            <Button text="Profile" styleClass="nav-btn"/>
-            <Button text="Settings" styleClass="nav-btn"/>
+        <VBox spacing="10" styleClass="sidebar">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
+            <Label text="Platform Controls" styleClass="sidebar-title"/>
+
+            <Button text="Overview" onAction="#showOverview" styleClass="nav-btn"/>
+            <Button text="Companies" onAction="#showCompanies" styleClass="nav-btn"/>
+            <Button text="Credentials" onAction="#showCredentials" styleClass="nav-btn"/>
+            <Button text="Payments" onAction="#showPayments" styleClass="nav-btn"/>
+            <Button text="Pricing" onAction="#showPricing" styleClass="nav-btn"/>
+            <Button text="Feedback" onAction="#showFeedback" styleClass="nav-btn"/>
         </VBox>
     </left>
 
-    <!-- Main Content -->
     <center>
         <StackPane fx:id="contentArea" styleClass="content-area">
-            <Label text="Welcome to SmartDesk Dashboard!" styleClass="welcome-text"/>
+            <Label text="Loading superadmin dashboard..."/>
         </StackPane>
     </center>
 

@@ -12,6 +12,7 @@
         <HBox styleClass="top-bar">
             <Label text="SmartDesk" styleClass="app-title"/>
             <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Refresh" onAction="#refreshPage"/>
             <Button text="Profile" styleClass="profile-btn" onAction="#openProfile"/>
         </HBox>
     </top>
@@ -19,8 +20,8 @@
     <!-- Left Sidebar -->
     <left>
         <VBox spacing="15" styleClass="sidebar">
-            <Button fx:id="companyBtn" text="Company Dashboard" styleClass="nav-btn"/>
-            <Button fx:id="employeeBtn" text="Employee Dashboard" styleClass="nav-btn"/>
+            <Button fx:id="companyBtn" text="Company Dashboard" styleClass="nav-btn" onAction="#openCompanyDashboard"/>
+            <Button fx:id="employeeBtn" text="Employee Dashboard" styleClass="nav-btn" onAction="#openEmployeeDashboard"/>
             <Button fx:id="superadminBtn" text="Superadmin Dashboard" styleClass="nav-btn" onAction="#openSuperadminDashboard"/>
         </VBox>
     </left>

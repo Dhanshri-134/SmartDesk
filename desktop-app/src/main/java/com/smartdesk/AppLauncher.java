@@ -3,11 +3,9 @@ package com.smartdesk;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.smartdesk.config.SpringContext;
+import com.smartdesk.util.ViewNavigator;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class AppLauncher extends Application {
@@ -21,18 +19,8 @@ public class AppLauncher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
-        loader.setControllerFactory(context::getBean);
-        Parent root = loader.load();
-
-        Scene scene = new Scene(root, 960, 720);
-        scene.getStylesheets().add(getClass().getResource("/static/css/styles.css").toExternalForm());
-
-        primaryStage.setTitle("SmartDesk - Home Screen");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        ViewNavigator.showLogin(primaryStage);
     }
-
 
     @Override
     public void stop() {
